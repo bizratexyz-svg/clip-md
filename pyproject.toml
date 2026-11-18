@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "clip-md"
+version = "0.1.0"
+description = "Smart macOS clipboard utility for Markdown code blocks, JSON pretty-printing, and URL tracking-param stripping."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "clip-md contributors" }]
+keywords = ["clipboard", "markdown", "macos", "cli", "json", "url"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.scripts]
+clip-md = "clip_md.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/clip_md"]
