@@ -1,5 +1,8 @@
 # clip-md
 
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 A smart, zero-dependency macOS clipboard CLI utility (`pbpaste`/`pbcopy`, with `--stdin` / `--stdout` support for Linux & CI) for wrapping code in Markdown fences, pretty-printing JSON, and stripping URL tracking parameters.
 
 ## Features
@@ -35,6 +38,33 @@ echo '{"b":1,"a":[2,3]}' | clip-md json --stdin --stdout
 # Strip tracking params from a URL
 echo 'https://example.com/post?id=42&utm_source=twitter&fbclid=abc123' | clip-md clean-url --stdin --stdout
 # -> https://example.com/post?id=42
+```
+
+## Example Output
+
+```bash
+$ printf 'def greet(name: str) -> str:\n    return f"Hello, {name}!"\n' | clip-md code --stdin --stdout
+```
+
+````markdown
+```python
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+```
+````
+
+```bash
+$ echo '{"b":1,"a":[2,3]}' | clip-md json --stdin --stdout --sort-keys
+{
+  "a": [
+    2,
+    3
+  ],
+  "b": 1
+}
+
+$ echo 'https://example.com/post?id=42&utm_source=twitter&fbclid=abc123' | clip-md clean-url --stdin --stdout
+https://example.com/post?id=42
 ```
 
 ## License
